@@ -29,7 +29,6 @@ class Perceptron:
 
         for i in range(len(self.weights)):
             weighted_sum += inputs[i] * self.weights[i]
-            print(weighted_sum)
 
         return self.activate(weighted_sum)
 
@@ -73,34 +72,26 @@ def main():
     pg = pgUtil.PygameUtility(120, 1000, 1000)
     ptron = Perceptron(3)
 
-    points = 2000
+    points = 5000
     training = []
     count = 0
+    position = (0,0)
 
     for i in range(points):
-        # x = random.uniform(-1, 1)
-        # y = random.uniform(-1, 1)
-        #
-        # answer = 1
-        # if y > x:
-        #     answer = -1
-        #
-        # px = round(translate(x, -1, 1, 0, pg.display_width))
-        # py = round(translate(y, -1, 1, pg.display_height, 0))
+        x = random.uniform(-1, 1)
+        y = random.uniform(-1, 1)
 
-        px = random.randrange(0, pg.display_width)
-        py = random.randrange(0, pg.display_height)
         answer = 1
-        if py < px:
+        if y < f(1, x, 0):
             answer = -1
 
-        training.append(Trainer(px, py, answer))
+        training.append(Trainer(x, y, answer))
 
     while True:
         pg.event_update()
 
-        ptron.train(training[count].inputs, training[count].answer)
         if count < len(training) - 1:
+            ptron.train(training[count].inputs, training[count].answer)
             count += 1
 
         for i in range(count):
@@ -111,7 +102,8 @@ def main():
             else:
                 guess = training[i].lastGuess
 
-            position = training[i].inputs[0], training[i].inputs[1]
+            position = (round(translate(training[i].inputs[0], -1, 1, 0, pg.display_width)),
+                        round(translate(training[i].inputs[1], -1, 1, pg.display_height, 0)))
 
             if guess > 0:
                 pg.draw_circle(position, 5, 1)
