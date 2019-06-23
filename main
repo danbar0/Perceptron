@@ -1,6 +1,6 @@
 # This program calculates a perceptron to guess at the position of a point being above or below a line
 # Written by Daniel Barrera
-# 4/12/2018
+# 6/23/2019
 
 import random
 import pygame
