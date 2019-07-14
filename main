@@ -72,7 +72,7 @@ def main():
     pg = pgUtil.PygameUtility(120, 1000, 1000)
     ptron = Perceptron(3)
 
-    points = 5000
+    points = 2501
     training = []
     count = 0
     position = (0,0)
@@ -106,9 +106,9 @@ def main():
                         round(translate(training[i].inputs[1], -1, 1, pg.display_height, 0)))
 
             if guess > 0:
-                pg.draw_circle(position, 5, 1)
+                pg.draw_circle(position, 10, 1)
             else:
-                pg.draw_circle(position, 5, 0)
+                pg.draw_circle(position, 10, 0)
 
         pg.update_point_counter(count)
         pg.draw_button("Reset", pg.display_width-200, pg.display_height-100, 90, 90,
